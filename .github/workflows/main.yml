@@ -1,0 +1,22 @@
+name: Entpacke ZIP-Datei
+
+on:
+  push:
+    paths:
+      - "*.zip"
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository klonen
+        uses: actions/checkout@v3
+
+      - name: ZIP-Datei entpacken
+        run: |
+          unzip -o "Zeno v9 ORI @DrayXD.zip" -d ./entpackt
+          git config user.name "DeinBenutzername"
+          git config user.email "DeineEmail@beispiel.com"
+          git add ./entpackt
+          git commit -m "Entpackte Dateien hinzugefügt"
+          git push
